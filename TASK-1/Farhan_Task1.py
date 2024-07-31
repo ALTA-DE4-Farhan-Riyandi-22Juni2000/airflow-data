@@ -17,9 +17,9 @@ with DAG(
 
 
     def pull_multiple_value_once(ti=None):
-        book_title = ti.xcom_pull(task_ids='push_var_from_task_a', key='book_title')
-        book_title1 = ti.xcom_pull(task_ids='push_var_from_task_a', key='book_title1')
-        book_title2 = ti.xcom_pull(task_ids='push_var_from_task_a', key='book_title2')
+        book_title = ti.xcom_pull(task_ids='push_variable_to_xcom', key='book_title')
+        book_title1 = ti.xcom_pull(task_ids='push_variable_to_xcom', key='book_title1')
+        book_title2 = ti.xcom_pull(task_ids='push_variable_to_xcom', key='book_title2')
 
         print(f'print book_title variable from xcom: {book_title}, {book_title1}, {book_title2}')
 
