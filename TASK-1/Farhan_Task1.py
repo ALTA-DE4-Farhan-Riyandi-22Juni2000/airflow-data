@@ -2,6 +2,7 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 
+#1.  Create DAG that run in every 5 hours.
 with DAG(
     'Farhan_Riyandi_Task_1', 
     description='Task 1',
@@ -9,13 +10,13 @@ with DAG(
     start_date=datetime(2022, 10, 21), 
     catchup=False
 ) as dag:
-    # ti = task instance
+    # 2 Definisikan fungsi yang akan mendorong variabel ke XCom
     def push_variable_to_xcom(ti=None):
         ti.xcom_push(key='book_title', value='Data Engineer')
         ti.xcom_push(key='book_title1', value='Data Science')
         ti.xcom_push(key='book_title2', value='Data Analyst')
 
-
+    # 3 Definisikan fungsi untuk menarik banyak nilai sekaligus    
     def pull_multiple_value_once(ti=None):
         book_title = ti.xcom_pull(task_ids='push_variable_to_xcom', key='book_title')
         book_title1 = ti.xcom_pull(task_ids='push_variable_to_xcom', key='book_title1')
